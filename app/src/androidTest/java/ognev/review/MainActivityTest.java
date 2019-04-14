@@ -30,6 +30,7 @@ public class MainActivityTest {
       //    .builder()
       //    .myModuleMock(new MyModuleMock(testRule.getActivity()))
       //    .build();
+
     }
   };
 

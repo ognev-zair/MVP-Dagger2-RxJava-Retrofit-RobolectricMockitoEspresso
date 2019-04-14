@@ -1,5 +1,7 @@
 apply plugin: 'com.android.application'
 
+
+
 android {
   compileSdkVersion 28
   defaultConfig {
@@ -14,6 +16,37 @@ android {
     release {
       minifyEnabled false
       proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+    }
+
+    debug {
+      debuggable true
+      applicationIdSuffix ".debug"
+    }
+
+    staging {
+      initWith debug
+      applicationIdSuffix ".staging"
+    }
+
+  }
+
+  // run unit tests before building DemoDebug flavor apk
+  afterEvaluate {
+    assembleDemoDebug.dependsOn test
+  }
+
+  flavorDimensions "version"
+  productFlavors {
+    demo {
+      dimension "version"
+      applicationIdSuffix ".demo"
+      versionNameSuffix "-demo"
+    }
+
+    full {
+      dimension "version"
+      applicationIdSuffix ".full"
+      versionNameSuffix "-full"
     }
   }
 
